@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Phlosales.API.Entities;
 using Phlosales.API.Models;
 using Phlosales.API.Services;
 using System.Net;
@@ -7,23 +8,59 @@ namespace Phlosales.API.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class OrdersController : ControllerBase
+    public class ProdOrdersController : ControllerBase
     {
-        private readonly IOrderService orderService;
-        private readonly ILogger<OrdersController> logger;
+        private readonly IProdOrderService prodOrderService;
+        private readonly ILogger<ProdOrdersController> logger;
 
-        public OrdersController(IOrderService orderService, ILogger<OrdersController> logger)
+        public ProdOrdersController(IProdOrderService prodOrderService, ILogger<ProdOrdersController> logger)
         {
-            this.orderService = orderService ?? throw new ArgumentNullException(nameof(orderService));
+            this.prodOrderService = prodOrderService ?? throw new ArgumentNullException(nameof(prodOrderService));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ProdOrder>>> GetProdOrders()
         {
-            var result = await orderService.GetOrders();
-            return Ok(result);
-        } 
+            try
+            {
+                var result = await prodOrderService.GetProdOrders();
+                return Ok(result);
+            }
+            catch (Exception exception)
+            {
+                logger.LogError(exception.Message);
+                return BadRequest(exception);
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProdOrder>> GetProdOrder(Guid prodOrderId)
+        {
+            try
+            {
+                var prodOrder = await prodOrderService.GetProdOrder(prodOrderId);
+
+                if (prodOrder == null)
+                {
+                    logger.LogError($"Order id: {prodOrderId}, not found!");
+                    return NotFound();
+                }
+                return Ok(prodOrder);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<ProdOrder>>  CreateProdOrder(ProdOrder prodOrder)
+        {
+            var result = await prodOrderService.AddProdOrder(prodOrder);
+            return Created("prodorders", result);
+        }   
     }
 }
 

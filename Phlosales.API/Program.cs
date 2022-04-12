@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Phlosales.API.Data;
 using Phlosales.API.DbContext;
 using Phlosales.API.Services;
 
@@ -15,10 +16,10 @@ builder.Services.AddSwaggerGen();
 //var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 //builder.Services.AddDbContext<PhloDbContext>(options =>
 //    options.UseNpgsql(connectionString));
-builder.Services.AddDbContext<PhloDbContext>(
+builder.Services.AddDbContext<PhloSysDbContext>(
     option => option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IProdOrderService, ProdOrderService>();
 //helps capture database-related exceptions along with possible actions to resolve those in the HTML response format
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
