@@ -18,14 +18,12 @@ namespace Phlosales.API.Controllers
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-
         [HttpGet]
-        //[ProducesResponseType(typeof(IEnumerable<Order>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Order>>> GetAllProducts()
         {
             var result = await orderService.GetOrders();
             return Ok(result);
-        }
+        } 
     }
 }
 
