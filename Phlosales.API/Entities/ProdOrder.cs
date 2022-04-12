@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Phlosales.API.Models
+namespace Phlosales.API.Entities
 {
- 
-    public class Order
+    public class ProdOrder
     {
         [Required]
-        public Guid OrderId { get; set; }
+        public Guid ProdOrderId { get; set; }
         [Required]
         public string CustomerName { get; set; }
         [Required]
