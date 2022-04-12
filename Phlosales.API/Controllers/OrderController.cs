@@ -34,7 +34,7 @@ namespace Phlosales.API.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{prodOrderId}")]
         public async Task<ActionResult<ProdOrder>> GetProdOrder(Guid prodOrderId)
         {
             try
