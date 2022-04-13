@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Phlosales.API.Entities;
 using Phlosales.API.Models;
 using Phlosales.API.Services;
@@ -6,6 +7,7 @@ using System.Net;
 
 namespace Phlosales.API.Controllers
 {
+    [EnableCors("MyPolicy")]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ProdOrdersController : ControllerBase
@@ -34,7 +36,7 @@ namespace Phlosales.API.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{prodOrderId}")]
         public async Task<ActionResult<ProdOrder>> GetProdOrder(Guid prodOrderId)
         {
             try
@@ -58,8 +60,16 @@ namespace Phlosales.API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProdOrder>>  CreateProdOrder(ProdOrder prodOrder)
         {
-            var result = await prodOrderService.AddProdOrder(prodOrder);
-            return Created("prodorders", result);
+            try
+            {
+                var result = await prodOrderService.AddProdOrder(prodOrder);
+                return Created("prodorders", result);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+          
         }   
     }
 }

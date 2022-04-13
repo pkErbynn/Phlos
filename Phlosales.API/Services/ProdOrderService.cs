@@ -17,7 +17,7 @@ namespace Phlosales.API.Services
 
         public async Task<IEnumerable<ProdOrder>> GetProdOrders()
         {
-            var prodOrders = _dbContext.ProdOrders.ToList();
+            var prodOrders = _dbContext.ProdOrders.ToList().OrderByDescending(o => o.Price);
 
             if (prodOrders.Count() != 0)
             {
@@ -41,6 +41,10 @@ namespace Phlosales.API.Services
             if(prodOrder == null)
             {
                 throw new ArgumentException("order can not be null");
+            }
+            if (!string.IsNullOrEmpty(prodOrder.ProdOrderId.ToString()))
+            {
+                throw new ArgumentException("order id should be empty");
             }
             ThrowIfParamsNull(new List<string> { prodOrder.CustomerName, prodOrder.ProductName, prodOrder.Price.ToString() });
 

@@ -5,22 +5,29 @@ using Phlosales.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyPolicy",
+                policy =>
+                {
+                    policy.WithOrigins(
+                        "https://phloview.com",
+                        "http://localhost:4200")
+                            .AllowAnyMethod();
+                });
+});
 
+// Add services to the di container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Connect to PostgreSQL Database
-//var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-//builder.Services.AddDbContext<PhloDbContext>(options =>
-//    options.UseNpgsql(connectionString));
 builder.Services.AddDbContext<PhloSysDbContext>(
     option => option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// register my costome service
 builder.Services.AddScoped<IProdOrderService, ProdOrderService>();
-//helps capture database-related exceptions along with possible actions to resolve those in the HTML response format
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
@@ -31,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseHttpsRedirection();
 
