@@ -58,8 +58,16 @@ namespace Phlosales.API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProdOrder>>  CreateProdOrder(ProdOrder prodOrder)
         {
-            var result = await prodOrderService.AddProdOrder(prodOrder);
-            return Created("prodorders", result);
+            try
+            {
+                var result = await prodOrderService.AddProdOrder(prodOrder);
+                return Created("prodorders", result);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+          
         }   
     }
 }
