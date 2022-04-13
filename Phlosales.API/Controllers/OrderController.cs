@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Phlosales.API.Entities;
 using Phlosales.API.Models;
 using Phlosales.API.Services;
@@ -6,6 +7,7 @@ using System.Net;
 
 namespace Phlosales.API.Controllers
 {
+    [EnableCors("MyPolicy")]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ProdOrdersController : ControllerBase
