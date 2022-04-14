@@ -69,8 +69,20 @@ namespace Phlosales.API.Controllers
             {
                 return BadRequest(exception.Message);
             }
-          
-        }   
+        }
+
+        [HttpDelete("{prodOrderId}")]
+        public async Task<ActionResult<ProdOrder>> DeleteProdOrder(Guid prodOrderId)
+        {
+            try
+            {
+                return await prodOrderService.DeleteProdOrder(prodOrderId);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
     }
 }
 

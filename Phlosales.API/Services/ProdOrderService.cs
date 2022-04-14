@@ -33,7 +33,7 @@ namespace Phlosales.API.Services
                 throw new ArgumentNullException(nameof(prodOrderId));
             }
 
-            return  _dbContext.ProdOrders.FirstOrDefault(order => order.ProdOrderId == prodOrderId); ;
+            return  _dbContext.ProdOrders.FirstOrDefault(order => order.ProdOrderId == prodOrderId);
         }
 
         public async Task<ProdOrder> AddProdOrder(ProdOrder prodOrder)
@@ -52,9 +52,20 @@ namespace Phlosales.API.Services
             return addedProdOrder.Entity;
         }
 
-        public Task<ProdOrder> UpdateProdOrder(ProdOrder prodOrder)
+        public async Task<ProdOrder> DeleteProdOrder(Guid prodOrderId)
         {
-            throw new NotImplementedException();
+            if (prodOrderId == Guid.Empty)
+            {
+                throw new ArgumentNullException("id not provided");
+            }
+            var orderToDelete = _dbContext.ProdOrders.FirstOrDefault(order => order.ProdOrderId == prodOrderId);
+            if (orderToDelete == null)
+            {
+                throw new ArgumentNullException($"order not found: {prodOrderId}");
+            }
+            _dbContext.Remove(orderToDelete);
+            await _dbContext.SaveChangesAsync();
+            return await Task.FromResult(orderToDelete);
         }
 
         private void ThrowIfParamsNull(IEnumerable<object> params_)
