@@ -42,10 +42,6 @@ namespace Phlosales.API.Services
             {
                 throw new ArgumentException("order can not be null");
             }
-            if (!(prodOrder.ProdOrderId == Guid.Empty))
-            {
-                throw new ArgumentException("order id should be empty");
-            }
             ThrowIfParamsNull(new List<string> { prodOrder.CustomerName, prodOrder.ProductName, prodOrder.Price.ToString() });
 
             prodOrder.ProdOrderId = Guid.NewGuid();
