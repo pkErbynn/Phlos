@@ -8,6 +8,6 @@ namespace Phlosales.API.Services
         Task<IEnumerable<ProdOrder>> GetProdOrders();
         Task<ProdOrder> AddProdOrder(ProdOrder prodOrder);
         Task<ProdOrder> GetProdOrder(Guid prodOrderId);
-        Task<ProdOrder> UpdateProdOrder(ProdOrder prodOrder);
+        Task<ProdOrder> DeleteProdOrder(Guid prodOrderId);
     }
 }
