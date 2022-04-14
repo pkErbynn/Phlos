@@ -10,9 +10,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "MyPolicy",
                 policy =>
                 {
-                    policy.WithOrigins(
-                        "https://phloview.com",
-                        "http://localhost:4200")
+                    policy.WithOrigins("https://phloview.com", "http://localhost:4200")
+                            .AllowAnyHeader()
                             .AllowAnyMethod();
                 });
 });
