@@ -42,7 +42,7 @@ namespace Phlosales.API.Services
             {
                 throw new ArgumentException("order can not be null");
             }
-            if (!string.IsNullOrEmpty(prodOrder.ProdOrderId.ToString()))
+            if (!(prodOrder.ProdOrderId == Guid.Empty))
             {
                 throw new ArgumentException("order id should be empty");
             }
