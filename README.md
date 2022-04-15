@@ -1,9 +1,10 @@
 # Phlos 
 ## Synopsis
-Phlos is a RESTful API web application that allows user to make sale order which is persisted into a data-store.
-User can perform these operations
-- create a sale order
+Phlos is a RESTful API web application component that allows user to make sale order which is persisted into a data-store.
+User can perform these core operations:
+- make a sale order
 - view all sold products
+- other: delete an order (non-core)
 
 ## Technology stack
 - PostgreSQL
@@ -34,3 +35,6 @@ $ git clone https://github.com/pkErbynn/Phlos.git
 ```
 dotnet test
 ```
+### Deployment
+Deployed API - https://phlosales.herokuapp.com/api/v1/prodorders
+
