@@ -11,7 +11,7 @@ using Xunit;
 
 namespace Phlosales.Tests.IntegrationTests
 {
-    public class ProOrderServiceTests
+    public class ProOrderServiceTests: IDisposable
     {
         private readonly DbContextOptions<PhloSysDbContext> options;
 
@@ -34,9 +34,8 @@ namespace Phlosales.Tests.IntegrationTests
         public void GetProdOrders_Success()
         {
             var phloRepository = new PhloSysDbContext(options);
-            var movies = phloRepository.ProdOrders.ToList();  
-
-            Assert.Equal(3, movies.Count);
+            var orders = phloRepository.ProdOrders.ToList();
+            Assert.Equal(3, orders.Count());
         }
 
         [Fact]
@@ -44,12 +43,24 @@ namespace Phlosales.Tests.IntegrationTests
         {
             var newCustomer = "Magie";
             var phloRepository = new PhloSysDbContext(options);
-            var movies = phloRepository.ProdOrders.Add(
+            var result = phloRepository.ProdOrders.Add(
                 new ProdOrder() { ProdOrderId = Guid.NewGuid(), CustomerName = newCustomer, Price = 5000, ProductName = "mac" }
             );
             phloRepository.SaveChanges();
 
-            Assert.Equal(newCustomer, movies.Entity.CustomerName);
+            Assert.Equal(newCustomer, result.Entity.CustomerName);
+        }
+
+        // clean in-mem database after each test run
+        public void Dispose()
+        {
+            var phloRepository = new PhloSysDbContext(options);
+            var orders = phloRepository.ProdOrders.ToList();
+            orders.ForEach(order =>
+            {
+                phloRepository.ProdOrders.Remove(order);
+                phloRepository.SaveChanges();
+            });
         }
     }
 }
