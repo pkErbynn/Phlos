@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using Phlosales.API.Data;
-using Phlosales.API.DbContext;
 using Phlosales.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +26,7 @@ builder.Services.AddDbContext<PhloSysDbContext>(
 
 // register my costome service
 builder.Services.AddScoped<IProdOrderService, ProdOrderService>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();

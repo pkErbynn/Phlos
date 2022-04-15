@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phlosales.API.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Phlosales.API.Data
 {
-    public class PhloSysDbContext: Microsoft.EntityFrameworkCore.DbContext
+    public class PhloSysDbContext : DbContext, IPhloSysDbContext
     {
         public PhloSysDbContext(DbContextOptions<PhloSysDbContext> options)
                 : base(options)
