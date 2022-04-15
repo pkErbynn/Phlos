@@ -7,7 +7,7 @@ using Xunit;
 
 namespace Phlosales.Tests.IntegrationTests
 {
-    public class Integration: FactAttribute
+    public class IntegrationFact: FactAttribute
     {
     }
 }
