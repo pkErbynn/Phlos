@@ -30,7 +30,7 @@ namespace Phlosales.Tests.IntegrationTests
             mockPhloSysDbContext.SaveChanges();
         }
 
-        [Fact]
+        [Integration]
         public void GetProdOrders_Success()
         {
             var phloRepository = new PhloSysDbContext(options);
@@ -38,7 +38,7 @@ namespace Phlosales.Tests.IntegrationTests
             Assert.Equal(3, orders.Count());
         }
 
-        [Fact]
+        [Integration]
         public void AddProdOrder_Success()
         {
             var newCustomer = "Magie";
