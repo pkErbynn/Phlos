@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Moq;
-using Phlosales.API.Repository;
+using Phlosales.API.DbContexts;
 using Phlosales.API.Entities;
 using System;
 using System.Collections.Generic;

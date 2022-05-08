@@ -1,4 +1,4 @@
-﻿using Phlosales.API.Repository;
+﻿using Phlosales.API.DbContexts;
 using Phlosales.API.Entities;
 using System;
 
@@ -35,10 +35,6 @@ namespace Phlosales.API.Services
 
         public async Task<ProdOrder> AddProdOrder(ProdOrder prodOrder)
         {
-            if(prodOrder == null)
-            {
-                throw new ArgumentException("order can not be null");
-            }
             ThrowIfParamsNull(new List<string> { prodOrder.CustomerName, prodOrder.ProductName, prodOrder.Price.ToString() });
 
             prodOrder.ProdOrderId = Guid.NewGuid();
@@ -49,7 +45,7 @@ namespace Phlosales.API.Services
             return addedProdOrder.Entity;
         }
 
-        public async Task<ProdOrder> DeleteProdOrder(Guid prodOrderId)
+        public async Task<ProdOrder> DeleteProdOrderAsync(Guid prodOrderId)
         {
             if (prodOrderId == Guid.Empty)
             {
@@ -63,6 +59,30 @@ namespace Phlosales.API.Services
             _dbContext.Remove(orderToDelete);
             await _dbContext.SaveChangesAsync();
             return await Task.FromResult(orderToDelete);
+        }
+
+        public async Task<ProdOrder> UpdateProdOrderAsync(ProdOrder prodOrder)
+        {
+            if (prodOrder == null)
+            {
+                throw new ArgumentException("order can not be null");
+            }
+            ThrowIfParamsNull(new List<string> { prodOrder.CustomerName, prodOrder.ProductName, prodOrder.Price.ToString() });
+
+            var orderToUpdate = _dbContext.ProdOrders.FirstOrDefault(order => order.ProdOrderId == prodOrder.ProdOrderId);
+            if (orderToUpdate == null)
+            {
+                throw new ArgumentNullException($"order not found: {prodOrder.ProdOrderId}");
+            }
+
+            orderToUpdate.CustomerName = prodOrder.CustomerName;
+            orderToUpdate.ProductName = prodOrder.ProductName;
+            orderToUpdate.Price = prodOrder.Price;
+
+            await _dbContext.SaveChangesAsync();
+
+            return orderToUpdate;
+            //return await Task.FromResult(orderToUpdate);
         }
 
         private void ThrowIfParamsNull(IEnumerable<object> params_)
