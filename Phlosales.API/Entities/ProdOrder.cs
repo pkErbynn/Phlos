@@ -13,6 +13,4 @@ namespace Phlosales.API.Entities
         [Required]
         public double Price { get; set; }
     }
-
-    // poco
 }

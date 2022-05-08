@@ -1,5 +1,4 @@
 ﻿using Phlosales.API.Entities;
-using Phlosales.API.Models;
 
 namespace Phlosales.API.Services
 {

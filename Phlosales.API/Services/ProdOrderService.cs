@@ -1,6 +1,5 @@
 ﻿using Phlosales.API.Repository;
 using Phlosales.API.Entities;
-using Phlosales.API.Models;
 using System;
 
 namespace Phlosales.API.Services

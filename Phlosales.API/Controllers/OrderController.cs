@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Phlosales.API.Entities;
-using Phlosales.API.Models;
 using Phlosales.API.Services;
 using System.Net;
 
