@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Phlosales.API.Data;
+using Phlosales.API.Repository;
 using Phlosales.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
