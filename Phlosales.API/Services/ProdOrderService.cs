@@ -1,4 +1,4 @@
-﻿using Phlosales.API.Data;
+﻿using Phlosales.API.Repository;
 using Phlosales.API.Entities;
 using Phlosales.API.Models;
 using System;
@@ -16,7 +16,7 @@ namespace Phlosales.API.Services
 
         public async Task<IEnumerable<ProdOrder>> GetProdOrders()
         {
-            var prodOrders = _dbContext.ProdOrders.ToList().OrderByDescending(o => o.Price);
+            var prodOrders = _dbContext.ProdOrders.OrderByDescending(o => o.Price).ToList();
             if (prodOrders.Count() != 0)
             {
                 return prodOrders;

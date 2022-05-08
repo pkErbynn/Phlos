@@ -1,5 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
+// UNUSED CLASS
+
 namespace Phlosales.API.Models
 {
  

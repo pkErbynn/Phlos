@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Phlosales.API.Entities;
 
-namespace Phlosales.API.Data
+namespace Phlosales.API.Repository
 {
     public interface IPhloSysDbContext
     {

@@ -2,7 +2,9 @@
 using Phlosales.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Phlosales.API.Data
+// Data access layer on EF....bridge btn Domain classes and database
+
+namespace Phlosales.API.Repository
 {
     public class PhloSysDbContext : DbContext, IPhloSysDbContext
     {
@@ -15,7 +17,7 @@ namespace Phlosales.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProdOrder>().HasKey(e => e.ProdOrderId);
-            modelBuilder.Entity<ProdOrder>().HasData(
+            modelBuilder.Entity<ProdOrder>().HasData(   // seeding data to db after registering this context
                     new ProdOrder()
                     {
                         ProdOrderId = Guid.NewGuid(),
