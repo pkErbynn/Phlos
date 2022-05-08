@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 // Data access layer on EF....bridge btn Domain classes and database
 
-namespace Phlosales.API.Repository
+namespace Phlosales.API.DbContexts
 {
     public class PhloSysDbContext : DbContext, IPhloSysDbContext
     {

@@ -75,7 +75,21 @@ namespace Phlosales.API.Controllers
         {
             try
             {
-                return await prodOrderService.DeleteProdOrder(prodOrderId);
+                return await prodOrderService.DeleteProdOrderAsync(prodOrderId);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<ProdOrder>> UpdateProdOrder(ProdOrder prodOrder)
+        {
+            try
+            {
+                var prodOrderUpdate =  await prodOrderService.UpdateProdOrderAsync(prodOrder);
+                return Ok(prodOrderUpdate);
             }
             catch (Exception exception)
             {
