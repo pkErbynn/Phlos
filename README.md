@@ -37,11 +37,20 @@ $ git clone https://github.com/pkErbynn/Phlos.git
 ```
 $ docker pull pkerbynn/phlosales.api
 ```
+2. Check the image 
+```
+$ docker images
+```
 3. Run image on port 8080
 ```
 $ docker run -p 8080:80 pkerbynn/phlosales.api
 ```
 4. Go to the API on localhost at `http://localhost:8080/api/v1/prodorders`
+5. Now, shutdown the container resource 
+```
+$ docker ps
+$ docker stop <CONTAINER_ID>
+```
 
 ### Run test
 ```
