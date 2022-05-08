@@ -9,15 +9,21 @@ User can perform these core operations:
 ## Technology stack
 - PostgreSQL
 - Dotnet Core 6.0
+- Entity Framework
 - XUnit
-- Heroku
 - Git
-- GitHub Actions
 
-## Dev operations
-- CI/CD
+## Implementation Best practices
+- SOLID principles
 - Unit Testing
 - Integration Testing
+- CI/CD Pipeline with GitHub Actions
+- Automated testing
+
+
+## Deployment
+- Heroku
+- Docker Hub (https://hub.docker.com/repository/docker/pkerbynn/phlosales.api)
 
 ## Setup
 ### Requirements
@@ -31,10 +37,19 @@ $ git clone https://github.com/pkErbynn/Phlos.git
 2. Open the solution with Visual Studio
 3. Start the server
 
+### Docker
+1. Pull docker image from registry
+```
+$ docker pull pkerbynn/phlosales.api
+```
+3. Run image on port 8080
+```
+$ docker run -p 8080:80 pkerbynn/phlosales.api
+```
+4. Go to the API on localhost at `http://localhost:8080/api/v1/prodorders`
+
 ### Run test
 ```
 dotnet test
 ```
-### Deployment
-Deployed API - https://phlosales.herokuapp.com/api/v1/prodorders
 
