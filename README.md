@@ -20,11 +20,6 @@ User can perform these core operations:
 - CI/CD Pipeline with GitHub Actions
 - Automated testing
 
-
-## Deployment
-- Heroku
-- Docker Hub (https://hub.docker.com/repository/docker/pkerbynn/phlosales.api)
-
 ## Setup
 ### Requirements
 - Visual Studio (Used 2022)
@@ -53,3 +48,6 @@ $ docker run -p 8080:80 pkerbynn/phlosales.api
 dotnet test
 ```
 
+## Deployment
+- Heroku (https://phlosales.herokuapp.com/api/v1/prodorders)
+- Docker Hub (https://hub.docker.com/repository/docker/pkerbynn/phlosales.api)
