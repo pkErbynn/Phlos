@@ -6,18 +6,26 @@ User can perform these core operations:
 - view all sold products
 - other: delete an order (non-core)
 
+## Screenshots
+<img src="./Screenshots/phlo-api.jpg">
+<img src="./Screenshots/phlo-GET.jpg">
+<img src="./Screenshots/phlo-tests.jpg">
+<img src="./Screenshots/phlo-docker.jpg">
+
 ## Technology stack
 - PostgreSQL
 - Dotnet Core 6.0
 - Entity Framework
 - XUnit
-- Git
+- GitHub
+- GitHub Action
+- Docker
 
 ## Implementation Best practices
 - SOLID principles
 - Unit Testing
 - Integration Testing
-- CI/CD Pipeline with GitHub Actions
+- CI/CD Pipeline
 - Automated testing
 
 ## Setup
