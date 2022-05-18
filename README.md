@@ -4,7 +4,9 @@ Phlos is a RESTful API web application component that allows user to make sale o
 User can perform these core operations:
 - make a sale order
 - view all sold products
-- other: delete an order (non-core)
+- delete an order
+- update sales order
+
 
 ## Screenshots
 <img src="./Screenshots/phlo-api.jpg">
@@ -15,7 +17,7 @@ User can perform these core operations:
 ## Technology stack
 - PostgreSQL
 - Dotnet Core 6.0
-- Entity Framework
+- Entity Framework Core
 - XUnit
 - GitHub
 - GitHub Action
@@ -43,7 +45,7 @@ $ git clone https://github.com/pkErbynn/Phlos.git
 ### Docker
 1. Pull docker image from registry
 ```
-$ docker pull pkerbynn/phlosales.api
+$ docker pull pkerbynn/phlosales.api:v2
 ```
 2. Check the image 
 ```
@@ -51,9 +53,9 @@ $ docker images
 ```
 3. Run image on port 8080
 ```
-$ docker run -p 8080:80 pkerbynn/phlosales.api
+$ docker run -p 8080:80 pkerbynn/phlosales.api:v2
 ```
-4. Go to the API on localhost at `http://localhost:8080/api/v1/prodorders`
+4. Go to the browser localhost and open the API at `http://localhost:8080/api/v1/prodorders`
 5. Now, shutdown the container resource 
 ```
 $ docker ps
